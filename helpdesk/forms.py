@@ -395,11 +395,11 @@ class TicketForm(AbstractTicketForm):
         followup.save()
 
         files = self._attach_files_to_follow_up(followup)
-        self._send_messages(ticket=ticket,
-                            queue=queue,
-                            followup=followup,
-                            files=files,
-                            user=user)
+        # self._send_messages(ticket=ticket,
+        #                     queue=queue,
+        #                     followup=followup,
+        #                     files=files,
+        #                     user=user)
         return ticket
 
 
@@ -482,10 +482,10 @@ class PublicTicketForm(AbstractTicketForm):
         followup.save()
 
         files = self._attach_files_to_follow_up(followup)
-        self._send_messages(ticket=ticket,
-                            queue=queue,
-                            followup=followup,
-                            files=files)
+        # self._send_messages(ticket=ticket,
+        #                     queue=queue,
+        #                     followup=followup,
+        #                     files=files)
         return ticket
 
 
