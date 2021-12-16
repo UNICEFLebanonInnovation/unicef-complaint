@@ -4,7 +4,7 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand" href="{% url 'helpdesk:home' %}">{% trans 'Helpdesk' %}</a>
+      <a class="navbar-brand" href="{% url 'helpdesk:home' %}">{% trans 'Complaint Platform' %}</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0 mr-auto" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -70,7 +70,7 @@
             </li>
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="{% url 'helpdesk:submit' %}" id="userDropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user-circle fa-fw"></i> {% trans "Submit a Ticket" %}
+                    <i class="fas fa-user-circle fa-fw"></i> {% trans "Submit a Complaint" %}
                 </a>
             </li>
         {% endif %}

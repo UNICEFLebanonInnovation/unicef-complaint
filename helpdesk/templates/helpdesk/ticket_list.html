@@ -2,7 +2,7 @@
 
 {% load i18n humanize static in_list %}
 
-{% block helpdesk_title %}{% trans "Tickets" %}{% endblock %}
+{% block helpdesk_title %}{% trans "Complaints" %}{% endblock %}
 
 {% block helpdesk_head %}
     <!-- Timeline 3 CSS -->
@@ -13,14 +13,14 @@
     {% endif %}
 {% endblock %}
 
-{% block h1_title %}Tickets
+{% block h1_title %}Complaints
     {% if from_saved_query %} [{{ saved_query.title }}]{% endif %}
 {% endblock %}
 
 
 {% block helpdesk_breadcrumb %}
     <li class="breadcrumb-item">
-        <a href="{% url 'helpdesk:list' %}">{% trans "Tickets" %}</a>
+        <a href="{% url 'helpdesk:list' %}">{% trans "Complaints" %}</a>
     </li>
     {% if from_saved_query and saved_query.user == user %}
         <li class="breadcrumb-item">{% trans "Saved Query" %}</li>
@@ -66,7 +66,7 @@
                             <thead class="thead-light">
                             <tr>
                                 <th></th>
-                                <th>{% trans "Ticket" %}</th>
+                                <th>{% trans "Complaint" %}</th>
                                 <th>{% trans "Priority" %}</th>
                                 <th>{% trans "Queue" %}</th>
                                 <th>{% trans "Status" %}</th>
@@ -97,7 +97,7 @@
                         </p>
 
                         <p>
-                            <label for='id_mass_action'>{% trans "With Selected Tickets:" %}</label>
+                            <label for='id_mass_action'>{% trans "With Selected Complaints:" %}</label>
                             <select name='action' id='id_mass_action'>
                                 <option value='take'>{% trans "Take (Assign to me)" %}</option>
                                 <option value='delete'>{% trans "Delete" %}</option>
@@ -336,10 +336,10 @@
         }
         
         $(document).ready(function () {
-            // Ticket DataTable Initialization
+            // Complaint DataTable Initialization
             $('#ticketTable').DataTable({
                 language: {
-                    "emptyTable": "{% trans 'No Tickets Match Your Selection' %}"
+                    "emptyTable": "{% trans 'No Complaints Match Your Selection' %}"
                 },
                 processing: true,
                 serverSide: true,

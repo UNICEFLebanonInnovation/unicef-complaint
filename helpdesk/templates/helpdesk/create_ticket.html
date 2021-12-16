@@ -1,12 +1,12 @@
 {% extends "helpdesk/base.html" %}{% load i18n bootstrap4form %}
 
-{% block helpdesk_title %}{% trans "Create Ticket" %}{% endblock %}
+{% block helpdesk_title %}{% trans "Create Complaint" %}{% endblock %}
 
 {% block helpdesk_breadcrumb %}
     <li class="breadcrumb-item">
-        <a href="#">{% trans "Tickets" %}</a>
+        <a href="#">{% trans "Complaints" %}</a>
     </li>
-    <li class="breadcrumb-item active">{% trans "Create Ticket" %}</li>
+    <li class="breadcrumb-item active">{% trans "Create Complaint" %}</li>
 {% endblock %}
 
 {% block helpdesk_head %}
@@ -15,7 +15,7 @@
 {% block helpdesk_body %}
     <div class="container">
         <div class="card card-register mx-auto mt-5">
-            <div class="card-header">{% trans "Submit a Ticket" %}</div>
+            <div class="card-header">{% trans "Submit a Complaint" %}</div>
             <div class="card-body">
                 <p>
                     {% trans "Unless otherwise stated, all fields are required." %}
@@ -50,7 +50,7 @@
                         {% endif %}
                     {% endfor %}
                     <button type="submit" class="btn btn-primary btn-lg btn-block">
-                        <i class="fa fa-send"></i> {% trans "Submit Ticket" %}
+                        <i class="fa fa-send"></i> {% trans "Submit Complaint" %}
                     </button>
                 </form>
             </div>

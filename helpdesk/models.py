@@ -99,7 +99,7 @@ class Queue(models.Model):
         _('Slug'),
         max_length=50,
         unique=True,
-        help_text=_('This slug is used when building ticket ID\'s. Once set, '
+        help_text=_('This slug is used when building complaint ID\'s. Once set, '
                     'try not to change it or e-mailing may get messy.'),
     )
 
@@ -133,14 +133,14 @@ class Queue(models.Model):
         blank=True,
         default=False,
         help_text=_('Do you want to poll the e-mail box below for new '
-                    'tickets?'),
+                    'complaints?'),
     )
 
     escalate_days = models.IntegerField(
         _('Escalation Days'),
         blank=True,
         null=True,
-        help_text=_('For tickets which are not held, how often do you wish to '
+        help_text=_('For complaints which are not held, how often do you wish to '
                     'increase their priority? Set to 0 for no escalation.'),
     )
 
@@ -150,7 +150,7 @@ class Queue(models.Model):
         null=True,
         max_length=200,
         help_text=_('If an e-mail address is entered here, then it will '
-                    'receive notification of all new tickets created for this queue. '
+                    'receive notification of all new complaints created for this queue. '
                     'Enter a comma between multiple e-mail addresses.'),
     )
 
@@ -160,8 +160,8 @@ class Queue(models.Model):
         null=True,
         max_length=200,
         help_text=_('If an e-mail address is entered here, then it will '
-                    'receive notification of all activity (new tickets, closed '
-                    'tickets, updates, reassignments, etc) for this queue. Separate '
+                    'receive notification of all activity (new complaints, closed '
+                    'complaints, updates, reassignments, etc) for this queue. Separate '
                     'multiple addresses with a comma.'),
     )
 
@@ -169,7 +169,7 @@ class Queue(models.Model):
         _('Notify contacts when email updates arrive'),
         blank=True,
         default=False,
-        help_text=_('When an email arrives to either create a ticket or to '
+        help_text=_('When an email arrives to either create a complaint or to '
                     'interact with an existing discussion. Should email notifications be sent ? '
                     'Note: the new_ticket_cc and updated_ticket_cc work independently of this feature'),
     )
@@ -180,7 +180,7 @@ class Queue(models.Model):
         choices=(('pop3', _('POP 3')), ('imap', _('IMAP')), ('local', _('Local Directory'))),
         blank=True,
         null=True,
-        help_text=_('E-Mail server type for creating tickets automatically '
+        help_text=_('E-Mail server type for creating complaints automatically '
                     'from a mailbox - both POP3 and IMAP are supported, as well as '
                     'reading from a local directory.'),
     )
@@ -493,13 +493,13 @@ class Ticket(models.Model):
     created = models.DateTimeField(
         _('Created'),
         blank=True,
-        help_text=_('Date this ticket was first created'),
+        help_text=_('Date this complaint was first created'),
     )
 
     modified = models.DateTimeField(
         _('Modified'),
         blank=True,
-        help_text=_('Date this ticket was most recently changed.'),
+        help_text=_('Date this complaint was most recently changed.'),
     )
 
     submitter_email = models.EmailField(
@@ -529,7 +529,7 @@ class Ticket(models.Model):
         _('On Hold'),
         blank=True,
         default=False,
-        help_text=_('If a ticket is on hold, it will not automatically be escalated.'),
+        help_text=_('If a complaint is on hold, it will not automatically be escalated.'),
     )
 
     description = models.TextField(
@@ -564,12 +564,12 @@ class Ticket(models.Model):
         blank=True,
         null=True,
         editable=False,
-        help_text=_('The date this ticket was last escalated - updated '
+        help_text=_('The date this complaint was last escalated - updated '
                     'automatically by management/commands/escalate_tickets.py.'),
     )
 
     secret_key = models.CharField(
-        _("Secret key needed for viewing/editing ticket by non-logged in users"),
+        _("Secret key needed for viewing/editing complaint by non-logged in users"),
         max_length=36,
         default=mk_secret,
     )
@@ -579,7 +579,7 @@ class Ticket(models.Model):
         blank=True,
         null=True,
         on_delete=models.CASCADE,
-        verbose_name=_('Knowledge base item the user was viewing when they created this ticket.'),
+        verbose_name=_('Knowledge base item the user was viewing when they created this complaint.'),
     )
 
     merged_to = models.ForeignKey(
@@ -913,8 +913,8 @@ class FollowUp(models.Model):
         blank=True,
         default=False,
         help_text=_(
-            'Public tickets are viewable by the submitter and all '
-            'staff, but non-public tickets can only be seen by staff.'
+            'Public complaints are viewable by the submitter and all '
+            'staff, but non-public complaints can only be seen by staff.'
         ),
     )
 
@@ -1172,7 +1172,7 @@ class PreSetReply(models.Model):
 
     body = models.TextField(
         _('Body'),
-        help_text=_('Context available: {{ ticket }} - ticket object (eg '
+        help_text=_('Context available: {{ ticket }} - complaint object (eg '
                     '{{ ticket.title }}); {{ queue }} - The queue; and {{ user }} '
                     '- the current user.'),
     )
@@ -1305,7 +1305,7 @@ class KBCategory(models.Model):
         blank=True,
         null=True,
         on_delete=models.CASCADE,
-        verbose_name=_('Default queue when creating a ticket after viewing this category.'),
+        verbose_name=_('Default queue when creating a complaint after viewing this category.'),
     )
 
     public = models.BooleanField(
@@ -1531,38 +1531,38 @@ class UserSettings(models.Model):
 
     login_view_ticketlist = models.BooleanField(
         verbose_name=_('Show Ticket List on Login?'),
-        help_text=_('Display the ticket list upon login? Otherwise, the dashboard is shown.'),
+        help_text=_('Display the complaint list upon login? Otherwise, the dashboard is shown.'),
         default=login_view_ticketlist_default,
     )
 
     email_on_ticket_change = models.BooleanField(
-        verbose_name=_('E-mail me on ticket change?'),
+        verbose_name=_('E-mail me on complaint change?'),
         help_text=_(
-            'If you\'re the ticket owner and the ticket is changed via the web by somebody else,'
+            'If you\'re the complaint owner and the complaint is changed via the web by somebody else,'
             'do you want to receive an e-mail?'
         ),
         default=email_on_ticket_change_default,
     )
 
     email_on_ticket_assign = models.BooleanField(
-        verbose_name=_('E-mail me when assigned a ticket?'),
-        help_text=_('If you are assigned a ticket via the web, do you want to receive an e-mail?'),
+        verbose_name=_('E-mail me when assigned a complaint?'),
+        help_text=_('If you are assigned a complaint via the web, do you want to receive an e-mail?'),
         default=email_on_ticket_assign_default,
     )
 
     tickets_per_page = models.IntegerField(
-        verbose_name=_('Number of tickets to show per page'),
-        help_text=_('How many tickets do you want to see on the Ticket List page?'),
+        verbose_name=_('Number of complaints to show per page'),
+        help_text=_('How many complaints do you want to see on the Ticket List page?'),
         default=tickets_per_page_default,
         choices=PAGE_SIZES,
     )
 
     use_email_as_submitter = models.BooleanField(
-        verbose_name=_('Use my e-mail address when submitting tickets?'),
-        help_text=_('When you submit a ticket, do you want to automatically '
+        verbose_name=_('Use my e-mail address when submitting complaints?'),
+        help_text=_('When you submit a complaint, do you want to automatically '
                     'use your e-mail address as the submitter address? You '
                     'can type a different e-mail address when entering the '
-                    'ticket if needed, this option only changes the default.'),
+                    'complaint if needed, this option only changes the default.'),
         default=use_email_as_submitter_default,
     )
 
@@ -1697,7 +1697,7 @@ class TicketCC(models.Model):
         on_delete=models.CASCADE,
         blank=True,
         null=True,
-        help_text=_('User who wishes to receive updates for this ticket.'),
+        help_text=_('User who wishes to receive updates for this complaint.'),
         verbose_name=_('User'),
     )
 
@@ -1712,14 +1712,14 @@ class TicketCC(models.Model):
         _('Can View Ticket?'),
         blank=True,
         default=False,
-        help_text=_('Can this CC login to view the ticket details?'),
+        help_text=_('Can this CC login to view the complaint details?'),
     )
 
     can_update = models.BooleanField(
         _('Can Update Ticket?'),
         blank=True,
         default=False,
-        help_text=_('Can this CC login and update the ticket?'),
+        help_text=_('Can this CC login and update the complaint?'),
     )
 
     def _email_address(self):
@@ -1770,7 +1770,7 @@ class CustomField(models.Model):
 
     help_text = models.TextField(
         _('Help Text'),
-        help_text=_('Shown to the user when editing the ticket'),
+        help_text=_('Shown to the user when editing the complaint'),
         blank=True,
         null=True
     )

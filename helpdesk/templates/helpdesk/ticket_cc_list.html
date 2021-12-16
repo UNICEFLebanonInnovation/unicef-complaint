@@ -2,11 +2,11 @@
 
 {% load i18n %}
 
-{% block helpdesk_title %}{% trans "Ticket CC Settings" %}{% endblock %}
+{% block helpdesk_title %}{% trans "Complaint CC Settings" %}{% endblock %}
 
 {% block helpdesk_breadcrumb %}
     <li class="breadcrumb-item">
-        <a href="{% url 'helpdesk:list' %}">{% trans "Tickets" %}</a>
+        <a href="{% url 'helpdesk:list' %}">{% trans "Complaints" %}</a>
     </li>
     <li class="breadcrumb-item">
         <a href="{% url 'helpdesk:list' %}{{ ticket.id }}/">{{ ticket.queue.slug }}-{{ ticket.id }}</a>
@@ -15,9 +15,9 @@
 {% endblock %}
 
 {% block helpdesk_body %}{% blocktrans with ticket.title as ticket_title and ticket.id as ticket_id %}
-<h2>Ticket CC Settings</h2>
+<h2>Complaint CC Settings</h2>
 
-<p>The following people will receive an e-mail whenever <em><a href='../'>{{ ticket_title }}</a></em> is updated. Some people can also view or edit the ticket via the public ticket views.</p>
+<p>The following people will receive an e-mail whenever <em><a href='../'>{{ ticket_title }}</a></em> is updated. Some people can also view or edit the complaint via the public complaint views.</p>
 
 <p>You can add a new recipient to the list or delete any of the items below as required.</p>{% endblocktrans %}
 
@@ -25,16 +25,16 @@
         <div class="col-lg-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    {% trans "Ticket CC List" %}
+                    {% trans "Complaint CC List" %}
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <div><a href='add/'><button class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i>{% trans "Add an Email or Helpdesk User" %}</button></a></div>
+                    <div><a href='add/'><button class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i>{% trans "Add an Email or Complaint Platform User" %}</button></a></div>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>{% trans "E-Mail Address or Helpdesk User" %}</th>
+                                    <th>{% trans "E-Mail Address or Complaint Platform User" %}</th>
                                     <th class="text-center">{% trans "View?" %}</th>
                                     <th class="text-center">{% trans "Update?" %}</th>
                                     <th class="text-center">{% trans "Delete" %}</th>

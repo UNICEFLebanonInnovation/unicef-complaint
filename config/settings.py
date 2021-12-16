@@ -116,21 +116,21 @@ HELPDESK_DEFAULT_SETTINGS = {
 }
 
 # Should the public web portal be enabled?
-HELPDESK_PUBLIC_ENABLED = False
-HELPDESK_VIEW_A_TICKET_PUBLIC = False
-HELPDESK_SUBMIT_A_TICKET_PUBLIC = False
+HELPDESK_PUBLIC_ENABLED = True
+HELPDESK_VIEW_A_TICKET_PUBLIC = True
+HELPDESK_SUBMIT_A_TICKET_PUBLIC = True
 
 # Should the Knowledgebase be enabled?
-HELPDESK_KB_ENABLED = False
+HELPDESK_KB_ENABLED = True
 
 # Allow users to change their passwords
 HELPDESK_SHOW_CHANGE_PASSWORD = True
 
 # Instead of showing the public web portal first,
 # we can instead redirect users straight to the login page.
-HELPDESK_REDIRECT_TO_LOGIN_BY_DEFAULT = True
-LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/'
+HELPDESK_REDIRECT_TO_LOGIN_BY_DEFAULT = False
+LOGIN_URL = 'helpdesk:login'
+LOGIN_REDIRECT_URL = 'helpdesk:home'
 
 # Database
 # - by default, we use SQLite3 for the demo, but you can also
@@ -262,17 +262,17 @@ AZURE_CONTAINER = os.environ.get('AZURE_CONTAINER', default='NO_AZURE_CONTAINER'
 
 LANGUAGE_COOKIE_NAME = 'default_language'
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
-# LANGUAGE_CODE = 'en-us'
-LANGUAGE_CODE = 'ar-ar'
+LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'ar-ar'
 
-LANGUAGES = (
-    ('ar-ar', 'arabic'),
-    ('en-us', 'english'),
+# LANGUAGES = (
+#     ('ar-ar', 'arabic'),
+#     ('en-us', 'english'),
     # ('fr-fr', 'french'),
-)
+# )
 
-# LANGUAGES_BIDI = ["en-us"]
-LANGUAGES_BIDI = ["ar-ar"]
+LANGUAGES_BIDI = ["en-us"]
+# LANGUAGES_BIDI = ["ar-ar"]
 
 LANGUAGE_COOKIE_SECURE = False
 LANGUAGE_COOKIE_HTTPONLY = False

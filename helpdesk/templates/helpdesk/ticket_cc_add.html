@@ -2,11 +2,11 @@
 
 {% load i18n %}
 
-{% block helpdesk_title %}{% trans "Add Ticket CC" %}{% endblock %}
+{% block helpdesk_title %}{% trans "Add Complaint CC" %}{% endblock %}
 
 {% block helpdesk_breadcrumb %}
     <li class="breadcrumb-item">
-        <a href="{% url 'helpdesk:list' %}">{% trans "Tickets" %}</a>
+        <a href="{% url 'helpdesk:list' %}">{% trans "Complaints" %}</a>
     </li>
     <li class="breadcrumb-item">
         <a href="{% url 'helpdesk:list' %}{{ ticket.id }}/">{{ ticket.queue.slug }}-{{ ticket.id }}</a>
@@ -18,12 +18,12 @@
 {% endblock %}
 
 {% block helpdesk_body %}
-    <h2>{% trans 'Add Ticket CC' %}</h2>
+    <h2>{% trans 'Add Complaint CC' %}</h2>
 
     <div class="card mb-3">
         <div class="card-header">
             <i class="fas fa-hand-pointer"></i>
-            {% trans 'To automatically send an email to a user or e-mail address when this ticket is updated, select the user or enter an e-mail address below.' %}
+            {% trans 'To automatically send an email to a user or e-mail address when this complaint is updated, select the user or enter an e-mail address below.' %}
         </div>
         <div class="card-body">
             <!-- Nav tabs -->
@@ -66,7 +66,7 @@
                                 {% endfor %}
                             </dl>
                         </fieldset>
-                        <button class="btn btn-primary" type='submit'>{% trans "Save Ticket CC" %}</button>
+                        <button class="btn btn-primary" type='submit'>{% trans "Save Complaint CC" %}</button>
                     <a href="{% url 'helpdesk:ticket_cc' ticket.id %}" class="btn btn-secondary">
                         {% trans "Cancel" %}
                     </a>
@@ -90,7 +90,7 @@
                                 {% endfor %}
                             </dl>
                         </fieldset>
-                        <button class="btn btn-primary" type='submit'>{% trans "Save Ticket CC" %}</button>
+                        <button class="btn btn-primary" type='submit'>{% trans "Save Complaint CC" %}</button>
                     <a href="{% url 'helpdesk:ticket_cc' ticket.id %}" class="btn btn-secondary">
                         {% trans "Cancel" %}
                     </a>
