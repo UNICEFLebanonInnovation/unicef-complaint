@@ -27,7 +27,7 @@ SECRET_KEY = '_crkn1+fnzu5$vns_-d+^ayiq%z4k*s!!ag0!mfy36(y!vrazd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['unicef-complaint.herokuapp.com', '127.0.0.1', ]
+ALLOWED_HOSTS = ['unicef-complaint.herokuapp.com', '127.0.0.1', 'internal-complaint.herokuapp.com', ]
 
 
 # Application definition
